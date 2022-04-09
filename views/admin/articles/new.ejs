@@ -1,0 +1,41 @@
+<%- include('../../partials/header.ejs'); %>
+<%- include('../../partials/navbar.ejs'); %>
+
+<div class="container mt-5">
+    <div class="card ">
+        <div class="card-header">
+            <h2>Novo artigo</h2> 
+        </div>
+        <div class="card-body"><!--criação de categoria através da rota abaixo-->
+            <form  method="POST" action="/articles/save">
+                <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo"><br>
+                <textarea style="resize: none" class="form-control" name="body" id="" cols="30" rows="5" placeholder="Escreva o artigo aqui" id="post"></textarea>
+                <br>
+                <label for="">Categorias</label>
+                <select name="category" class="form-control"><!--Function-->
+                    <% categories.forEach((category) => { %>
+                        <option value="<%= category.id %>"><%= category.title %></option>
+                    <% }) %>
+                </select><br>
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+    </div> 
+</div>
+
+<%- include('../../partials/footer.ejs'); %>
+
+
+<!--Inserindo o tiny editor de texto-->
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'bold italic fontsizeselect forecolor image redo undo underline copy	backcolor code',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      menubar: false,
+      entity_encoding: 'raw'
+   });
+  </script>

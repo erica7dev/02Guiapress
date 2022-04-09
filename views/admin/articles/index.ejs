@@ -1,0 +1,51 @@
+<%- include('../../partials/header.ejs'); %>
+<%- include('../../partials/navbar.ejs'); %>
+<div class="container">
+    <hr>
+    <h2>Artigos</h2>
+    <a href="/admin/articles/new" class="btn btn-success">Criar novo artigo</a>
+    <hr>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th>Category</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% articles.forEach(article => { %>
+                <tr>
+                    <td><%= article.id %></td>
+                    <td><%= article.title %></td>
+                    <td><%= article.slug %></td>
+                    <td><%= article.category.title %></td><!--- exibindo o nome da categoria ao inves de id-->
+                    <td>
+                        <form  method="POST" action="/articles/delete" style="display: inline;"
+                            onsubmit="confirmDelete(event, this)">
+                            <!--  enviando o id pelo input -->
+                            <input type="hidden" name="id" value="<%= article.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+<%- include('../../partials/footer.ejs'); %>
+<script>
+    //interceptar envio de form.
+    function confirmDelete(event,form){
+        event.preventDefault();
+        var question = confirm("Você deseja mesmo excluir este artigo?")
+        if(question){
+            form.submit();
+        }
+        
+    }
+</script>

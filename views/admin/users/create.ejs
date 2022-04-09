@@ -1,0 +1,25 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+
+    <div class="container">
+        <hr>
+        <!-- mt = margin-top (tem pra todas as opções de magin - top, botton, right, left)-->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2>Criação de Usuário</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/users/create">
+                    <input class="form-control" type="email" name="email" placeholder="email@exemple.com">
+                    <br>
+                    <input class="form-control" type="password" name="password" placeholder="*********">
+                    <br>
+    
+                    <!-- btn-block => Faz o botão ocupar o card todo -->
+                    <button type="submit" class="btn btn-success btn-block">Criar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%- include('../../partials/footer.ejs') %>
